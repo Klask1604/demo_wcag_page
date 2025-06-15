@@ -3680,64 +3680,38 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Guide Dog & Accessibility Services -->
-                            <div class="card border-0 shadow-sm mb-4">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-warning rounded-circle p-3 me-3">
-                                            <i class="fas fa-dog text-white fs-4"></i>
-                                        </div>
-                                        <h3 class="card-title h4 text-warning mb-0">Guide Dog Aircraft Access &
-                                            Accommodation</h3>
-                                    </div>
-                                    <p class="card-text text-muted lead">Guide dogs are permitted aboard aircraft
-                                        without restrictions, with designated floor space provided at the passenger's
-                                        feet in the assigned seat area. Flight crew ensure adequate space allocation and
-                                        provide guidance for proper positioning to avoid obstructing aisles or emergency
-                                        exits while maintaining the guide dog's comfort and working capability
-                                        throughout the flight duration.</p>
+                            <div class="two-column-grid">
+                                <div class="simple-card">
+                                    <h4><i class="fas fa-wheelchair"></i>Guide Dog Access</h4>
+                                    <p>Guide dogs are permitted aboard aircraft without restrictions, with designated
+                                        floor space provided at the passenger's feet in the assigned seat area. Flight
+                                        crew ensure adequate space allocation and provide guidance for proper
+                                        positioning to avoid obstructing aisles or emergency exits while maintaining the
+                                        guide dog's comfort and working capability throughout the flight duration.</p>
                                 </div>
+                                <div class="simple-card">
+                                    <h4><i class="fas fa-walking"></i> Braille Safety Materials & Information Access
+                                    </h4>
+                                    <p>Passenger safety brochures, emergency procedure cards, and in-flight menus are
+                                        available in Braille format upon request, ensuring complete access to safety
+                                        information and service options. Flight attendants provide verbal descriptions
+                                        of safety demonstrations and can offer detailed explanations of meal options,
+                                        entertainment selections, and service availability throughout the flight
+                                        experience.</p>
+                                </div>
+
+                            </div>
+                            <div class="simple-card">
+                                <h4><i class="fas fa-money-bill-wave"></i> Complete Boarding & In-Flight Assistance
+                                    Authorization</h4>
+                                <p>Airport attendants are fully authorized to provide comprehensive assistance
+                                    throughout all stages of aircraft boarding, from initial gate approach through final
+                                    seating arrangement and safety orientation. On-board staff are trained and available
+                                    to provide assistance with navigation to sanitary facilities when requested,
+                                    ensuring passenger independence and comfort throughout the flight experience while
+                                    respecting personal preferences for assistance levels.</p>
                             </div>
 
-                            <!-- Accessibility Materials & Support -->
-                            <div class="card border-0 shadow-sm mb-4">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-info rounded-circle p-3 me-3">
-                                            <i class="fas fa-braille text-white fs-4"></i>
-                                        </div>
-                                        <h3 class="card-title h4 text-info mb-0">Braille Safety Materials & Information
-                                            Access</h3>
-                                    </div>
-                                    <p class="card-text text-muted lead">Passenger safety brochures, emergency procedure
-                                        cards, and in-flight menus are available in Braille format upon request,
-                                        ensuring complete access to safety information and service options. Flight
-                                        attendants provide verbal descriptions of safety demonstrations and can offer
-                                        detailed explanations of meal options, entertainment selections, and service
-                                        availability throughout the flight experience.</p>
-                                </div>
-                            </div>
-
-                            <!-- Comprehensive Support Services -->
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body p-4">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="bg-secondary rounded-circle p-3 me-3">
-                                            <i class="fas fa-hands-helping text-white fs-4"></i>
-                                        </div>
-                                        <h3 class="card-title h4 text-secondary mb-0">Complete Boarding & In-Flight
-                                            Assistance Authorization</h3>
-                                    </div>
-                                    <p class="card-text text-muted lead">Airport attendants are fully authorized to
-                                        provide comprehensive assistance throughout all stages of aircraft boarding,
-                                        from initial gate approach through final seating arrangement and safety
-                                        orientation. On-board staff are trained and available to provide assistance with
-                                        navigation to sanitary facilities when requested, ensuring passenger
-                                        independence and comfort throughout the flight experience while respecting
-                                        personal preferences for assistance levels.</p>
-                                </div>
-                            </div>
 
                             <!-- END Boarding Process Section -->
                         </div>
@@ -4132,6 +4106,23 @@
                 localStorage.setItem(STATE_STORAGE_KEY, JSON.stringify(state));
             }
 
+            // Function to update hero title based on disability category
+            function updateHeroTitle(category)
+            {
+                const heroTitle = document.querySelector('.hero-title');
+                if (!heroTitle) return;
+
+                const categoryNames = {
+                    'prm': 'PRM',
+                    'vip': 'VIP',
+                    'cognitive': 'Cognitive',
+                    'deaf': 'Hearing Accessibility'
+                };
+
+                const categoryName = categoryNames[category] || 'Accessibility';
+                heroTitle.textContent = `Airport ${categoryName} Services`;
+            }
+
             function loadState()
             {
                 try
@@ -4354,6 +4345,9 @@
                 {
                     selectedContent.style.display = 'block';
                 }
+
+                // Update hero title based on selected category
+                updateHeroTitle(category);
 
                 // Update section navigation for the selected category
                 updateSectionNavigation(category);
